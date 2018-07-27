@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    <title>Primera</title>
+  </head>
+  <body>
+  <!--Bibliotecas P5.JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+  <!--script P5.JS-->
+<script>
+var data;
+var n;
+function preload() {
+  data = loadTable('https://raw.githubusercontent.com/samanthasayado/Evaluacion_27072018/gh-pages/data.csv','csv', 'header');
+}
+function setup() {
+  console.log(data);
+  console.log(data.getRowCount() + ' son las filas en la tabla');
+  console.log(data.getColumnCount() + ' son las columnas en la tabla');
+  var canvas = createCanvas(windowWidth, windowHeight);
+  canvas.position(0,0);
+  canvas.style('z-index','-1');
+  noStroke();
+  fill(0,150);
+  textAlign(CENTER);
+  textStyle(BOLD);  
+  beginShape();
+  vertex(0,height)
+    for (var a = 0; a < data.getRowCount(); a++) {
+    var size = data.get(a, 2);
+    var posX = (windowWidth/(data.getRowCount()+1))*(a+1);
+    var posY = map(size, 0, 500, (windowHeight-50), 100);
+    vertex(posX,posY);
+      var animal = data.get(a, 0);
+      textSize(11);
+      text(animal + '\n•',posX,posY-10);
+  }
+  vertex(width,height);
+  endShape(CLOSE);
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
